@@ -55,41 +55,21 @@ class CommentController extends AbstractController
      */
     protected const REQUEST_FIELD_RETURN_URL = 'returnUrl';
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function addAction(Request $request): RedirectResponse
     {
         return $this->executeAddAction($request);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function updateAction(Request $request): RedirectResponse
     {
         return $this->executeUpdateAction($request);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function removeAction(Request $request): RedirectResponse
     {
         return $this->executeRemoveAction($request);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function executeAddAction(Request $request): RedirectResponse
     {
         $returnUrl = (string)$request->request->get(static::REQUEST_FIELD_RETURN_URL);
@@ -114,11 +94,6 @@ class CommentController extends AbstractController
         return $this->redirectResponseExternal($returnUrl);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function executeUpdateAction(Request $request): RedirectResponse
     {
         $returnUrl = (string)$request->request->get(static::REQUEST_FIELD_RETURN_URL);
@@ -142,11 +117,6 @@ class CommentController extends AbstractController
         return $this->redirectResponseExternal($returnUrl);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function executeRemoveAction(Request $request): RedirectResponse
     {
         $returnUrl = (string)$request->request->get(static::REQUEST_FIELD_RETURN_URL);
@@ -170,11 +140,6 @@ class CommentController extends AbstractController
         return $this->redirectResponseExternal($returnUrl);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Generated\Shared\Transfer\CommentTransfer
-     */
     protected function createCommentTransferFromRequest(Request $request): CommentTransfer
     {
         $userTransfer = $this->getFactory()
@@ -186,12 +151,6 @@ class CommentController extends AbstractController
             ->setFkUser($userTransfer->getIdUserOrFail());
     }
 
-    /**
-     * @param string $tokenId
-     * @param string $value
-     *
-     * @return bool
-     */
     protected function validateCsrfToken(string $tokenId, string $value): bool
     {
         $csrfToken = new CsrfToken($tokenId, $value);
@@ -199,11 +158,6 @@ class CommentController extends AbstractController
         return $this->getFactory()->getCsrfTokenManager()->isTokenValid($csrfToken);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CommentThreadResponseTransfer $commentThreadResponseTransfer
-     *
-     * @return void
-     */
     protected function handleResponseMessages(CommentThreadResponseTransfer $commentThreadResponseTransfer): void
     {
         if ($commentThreadResponseTransfer->getIsSuccessful()) {

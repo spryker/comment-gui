@@ -18,25 +18,16 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
  */
 class CommentGuiCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Zed\CommentGui\Dependency\Facade\CommentGuiToCommentFacadeInterface
-     */
     public function getCommentFacade(): CommentGuiToCommentFacadeInterface
     {
         return $this->getProvidedDependency(CommentGuiDependencyProvider::FACADE_COMMENT);
     }
 
-    /**
-     * @return \Spryker\Zed\CommentGui\Dependency\Facade\CommentGuiToUserFacadeInterface
-     */
     public function getUserFacade(): CommentGuiToUserFacadeInterface
     {
         return $this->getProvidedDependency(CommentGuiDependencyProvider::FACADE_USER);
     }
 
-    /**
-     * @return \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface
-     */
     public function getCsrfTokenManager(): CsrfTokenManagerInterface
     {
         return $this->getProvidedDependency(CommentGuiDependencyProvider::SERVICE_FORM_CSRF_PROVIDER);
